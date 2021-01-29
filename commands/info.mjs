@@ -152,7 +152,7 @@ export default {
           **Members:** ${role.members.size}
         `)
         .addFields(
-          {name: "Permissions", value: joinInterval(role.permissions.toArray(), 3, "\n", ", ").replace(/_/g, " ")}
+          {name: "Permissions", value: joinInterval(role.permissions.toArray(), 3, "\n", ", ").replace(/_/g, " ") || "NONE"}
         )
         .setColor(role.hexColor)
         .setFooter("Created at ")
