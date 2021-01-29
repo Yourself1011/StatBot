@@ -5,7 +5,8 @@
   "main": "index.mjs",
   "license": "BSD-3-Clause",
   "scripts": {
-    "heroku-cleanup": "node ."
+    "build": "yarn install",
+    "release": "node ."
   },
   "dependencies": {
     "node": "14.13.1",
