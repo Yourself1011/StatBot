@@ -1,2 +1,3 @@
 *.log
 commands/template.txt
+sandbox.config.json

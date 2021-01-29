@@ -197,8 +197,7 @@ export async function returnBoard (boardType, guildId) {
           (member) => member.presence.status === "offline",
         ).size}`,
       })
-      // .setColor("#800808")
-      .setColor("#ff0000")
+      .setColor("#800808")
       .setFooter("Last edited ")
   } else if (boardType === "presences") {
     const output = new Discord.MessageEmbed()
@@ -374,8 +373,7 @@ export async function returnBoard (boardType, guildId) {
       value: activity,
       inline: true})
 
-    // Output.setColor("#800808")
-    output.setColor("#00ff00")
+    output.setColor("#800808")
     output.setFooter("Last edited ")
     
     return output
@@ -412,8 +410,7 @@ export async function returnBoard (boardType, guildId) {
         },
 
       )
-      // .setColor("#800808")
-      .setColor("ff0000")
+      .setColor("#800808")
       .setFooter("Last edited ")
   } else if (boardType === "bot") {
     return new Discord.MessageEmbed()
@@ -434,8 +431,7 @@ export async function returnBoard (boardType, guildId) {
         name: "Uptime",
         value: `${Math.floor(client.uptime / 86400000)}d, ${Math.floor(client.uptime / 3600000) % 24}h, ${Math.floor(client.uptime / 60000) % 60}m, ${Math.floor(client.uptime / 1000) % 60}s`
       })
-      // .setColor("#800808")
-      .setColor("#00ff00")
+      .setColor("#800808")
       .setFooter("Last edited ")
   } else if (boardType === "gMembers") {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
@@ -469,8 +465,7 @@ export async function returnBoard (boardType, guildId) {
           .toURL(),
       )
 
-      // .setColor("#800808")
-      .setColor("ff0000")
+      .setColor("#800808")
       .setFooter("Last edited ")
     
   }
