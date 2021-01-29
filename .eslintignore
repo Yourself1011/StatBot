@@ -1,0 +1,4 @@
+*/node_modules/
+**/functions/lib/*
+**/*.d.ts
+/src/serviceWorker.ts
