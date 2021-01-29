@@ -109,7 +109,7 @@ export default {
       .setTitle(`Showing stats for ${user.tag} (${member.nickname || "No nickname"}) (${user.id})`)
       .setDescription(`
         **Type:** ${user.bot ? "Bot" : "Human"}
-        **Badges:** ${user.flags.toArray().join(", ").replace(/_/g, " ")}
+        **Badges:** ${user.flags ? user.flags.toArray().join(", ").replace(/_/g, " ") : "None!"}
         **Status:** ${statusEmotes[user.presence.status]}
         **Activities:** ${user.presence.activities.map(pre => pre.type === "CUSTOM_STATUS" ? `${pre.emoji} ${pre.name}` : `${pre.type}: ${pre.name}`) || "None"}
       `)
