@@ -5,7 +5,6 @@
   "main": "index.mjs",
   "license": "BSD-3-Clause",
   "scripts": {
-    "start": "node index.mjs"
   },
   "dependencies": {
     "node": "14.13.1",
