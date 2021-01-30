@@ -31,6 +31,8 @@ export default async function loop () {
 
     for (let serverId of serverArray) {
       let server = await serverColl.findOne({_id: serverId})
+
+      if (!server) return
   
       if (!(iteration % server.cooldown)) {
         const serverStatBoards = server.statboards
@@ -64,6 +66,7 @@ export default async function loop () {
 
               newBoard.setTimestamp()
 
+              /* eslint-disable no-unused-expressions */
               client
                 .guilds
                 .cache
@@ -71,11 +74,11 @@ export default async function loop () {
                 .channels
                 .cache
                 .get(server.channel)
-                .messages
+                ?.messages
                 .fetch(server.messages[place])
                 .then((msg) => {
                   msg.edit(newBoard).catch()
-                })
+                }).catch()
                   
             }
             break
@@ -102,11 +105,11 @@ export default async function loop () {
                 .channels
                 .cache
                 .get(server.channel)
-                .messages
+                ?.messages
                 .fetch(server.messages[place])
                 .then((msg) => {
                   msg.edit(newBoard).catch()
-                })
+                }).catch()
             }
             break
 
@@ -130,11 +133,11 @@ export default async function loop () {
                 .channels
                 .cache
                 .get(server.channel)
-                .messages
+                ?.messages
                 .fetch(server.messages[place])
                 .then((msg) => {
                   msg.edit(newBoard).catch()
-                })
+                }).catch()
             }
             break
                 
@@ -150,12 +153,13 @@ export default async function loop () {
               .channels
               .cache
               .get(server.channel)
-              .messages
+              ?.messages
               .fetch(server.messages[place])
               .then((msg) => {
                 msg.edit(newBoard).catch()
-              })
-            
+              }).catch()
+              /* eslint-enable no-unused-expressions */
+
             break
           default:
             break

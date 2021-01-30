@@ -15,7 +15,7 @@ import fs from "fs"
 const {MongoClient: Mongo} = mongoDb 
 
 export const client = new Discord.Client()
-const token = process.env.TOKEN,
+const token = process.env.BETATOKEN,
   cooldowns = new Discord.Collection()
 
 client.commands = new Discord.Collection()
@@ -35,8 +35,8 @@ export const connection = new Promise((resolve, reject) => {
     }
 
     console.log("Mongo connected")
-    serverColl = mongoClient.db("Servers").collection("Servers")
-    serverList = mongoClient.db("Servers").collection("ServerList")
+    serverColl = mongoClient.db("betaServers").collection("Servers")
+    serverList = mongoClient.db("betaServers").collection("ServerList")
 
     return resolve()
   })
