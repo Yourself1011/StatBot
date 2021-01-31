@@ -4,3 +4,4 @@ sandbox.config.json
 lib
 tsbuildinfo.json
 node_modules
+.codesandbox
