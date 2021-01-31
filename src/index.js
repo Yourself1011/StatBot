@@ -62,12 +62,12 @@ client.once("ready", () => {
 client.login(token)
 
 const commandFiles = fs
-    .readdirSync("./commands")
+    .readdirSync(`${__dirname}/commands`)
     .filter((file) => file.endsWith(".js")),
   commands = []
 
 for (const file of commandFiles) {
-  commands.push(import(`./commands/${file}`))
+  commands.push(import(`${__dirname}/commands/${file}`))
 }
 
 Promise.all(commands).then((vals) => {
