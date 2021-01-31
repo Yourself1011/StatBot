@@ -90,9 +90,9 @@ client.on("message", async (message) => {
     return message.channel.send(`My prefix is \`${prefix}\``)
   }
 
-  if (message.content.toLowerCase().startsWith("<@764276231805075456>")) prefix = "<@764276231805075456>"
+  if (message.content.startsWith("<@764276231805075456> ")) prefix = "<@764276231805075456> "
 
-  if (message.content.toLowerCase().startsWith("<@!764276231805075456>")) prefix = "<@!764276231805075456>"
+  if (message.content.startsWith("<@!764276231805075456> ")) prefix = "<@!764276231805075456> "
 
   if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) {
     return
