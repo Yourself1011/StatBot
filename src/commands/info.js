@@ -128,7 +128,7 @@ export default {
           **[Last message](https://discord.com/channels/${member.guild.id}/${member.lastMessageChannelID}/${member.lastMessageID})**
         `}
       )
-      .setColor(member.roles.highest.hexColor)
+      .setColor(member.roles.color.hexColor)
       .setFooter("Created at ")
       .setTimestamp(user.createdAt)
 
