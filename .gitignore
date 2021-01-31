@@ -3,3 +3,4 @@ commands/template.txt
 sandbox.config.json
 lib
 tsbuildinfo.json
+node_modules
