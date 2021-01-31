@@ -1,0 +1,18 @@
+/**
+ * StatBot
+ * @copyright 2020 Daniel Zhang
+ * @license BSD-3-Clause
+ */
+
+export default {
+  name: "",
+  description: "",
+  args: 0,
+  usage: "",
+  guildOnly: false,
+  cooldown: 0,
+  aliases: [],
+  execute (message, args){
+
+  }
+}

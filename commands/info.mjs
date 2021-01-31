@@ -111,7 +111,7 @@ export default {
         **Type:** ${user.bot ? "Bot" : "Human"}
         **Badges:** ${user.flags ? user.flags.toArray().join(", ").replace(/_/g, " ") : "None!"}
         **Status:** ${statusEmotes[user.presence.status]}
-        **Activities:** ${user.presence.activities.map(pre => pre.type === "CUSTOM_STATUS" ? `${pre.emoji || ""} ${pre.state}` : `${pre.type}: ${pre.name}`) || "None"}
+        **Activities:** ${user.presence.activities.map(pre => pre.type === "CUSTOM_STATUS" ? ` ${pre.emoji || ""} ${pre.state}` : ` ${pre.type}: ${pre.name}`) || "None"}
       `)
       .addFields(
         {name: `Server info`, value: `

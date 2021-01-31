@@ -1,3 +1,5 @@
 *.log
 commands/template.txt
 sandbox.config.json
+lib
+tsbuildinfo.json

@@ -2,3 +2,4 @@
 **/functions/lib/*
 **/*.d.ts
 /src/serviceWorker.ts
+lib
