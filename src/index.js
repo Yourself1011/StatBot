@@ -86,13 +86,13 @@ client.on("message", async (message) => {
     prefix = serverInfo ? serverInfo.prefix : "s."
   }
 
-  if (message.content === "<@764276231805075456>" || message.content === "<@!764276231805075456>") {
+  if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) {
     return message.channel.send(`My prefix is \`${prefix}\``)
   }
 
-  if (message.content.startsWith("<@764276231805075456> ")) prefix = "<@764276231805075456> "
+  if (message.content.startsWith(`<@${client.user.id}> `)) prefix = `<@${client.user.id}> `
 
-  if (message.content.startsWith("<@!764276231805075456> ")) prefix = "<@!764276231805075456> "
+  if (message.content.startsWith(`<@!${client.user.id}> `)) prefix = `<@!${client.user.id}> `
 
   if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) {
     return
