@@ -94,7 +94,7 @@ client.on("message", async (message) => {
 
   if (message.content.startsWith(`<@!${client.user.id}> `)) prefix = `<@!${client.user.id}> `
 
-  if (!message.content.toLowerCase().startsWith(prefix) || message.author.bot) {
+  if (!message.content.toLowerCase().startsWith(prefix.toLowerCase()) || message.author.bot) {
     return
   }
 
