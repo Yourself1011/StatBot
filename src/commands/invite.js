@@ -15,7 +15,7 @@ export default {
   execute (message, args) {
     const reply = new Discord.MessageEmbed()
       .setTitle("My invite link")
-      .setURL("https://discord.com/oauth2/authorize?client_id=764276231805075456&scope=bot&permissions=268823636")
+      .setURL("https://discord.com/oauth2/authorize?client_id=764276231805075456&scope=bot&permissions=314388")
       .setDescription("[Admin link](https://discord.com/oauth2/authorize?client_id=764276231805075456&scope=bot&permissions=8)\n[No perms link](https://discord.com/oauth2/authorize?client_id=764276231805075456&scope=bot)\n[Support server](https://discord.gg/tvCmtkBAkc)")
 
     message.channel.send(reply)

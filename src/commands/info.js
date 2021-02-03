@@ -69,7 +69,7 @@ export default {
       let channel
       args.length <= 1 ? 
       channel = message.channel : 
-      channel = await findChannel(args[1], message.guild.id) || message.channel
+      channel = await findChannel(args.slice(1).join(" "), message.guild.id) || message.channel
 
       reply = new Discord.MessageEmbed()
         .setTitle(`Channel stats for ${channel.name}`)
@@ -94,7 +94,7 @@ export default {
       let member
       args.length <= 1 ? 
       member = message.guild.members.cache.get(message.author.id) : 
-      member = await findMember(args[1], message.guild.id) || message.guild.members.cache.get(message.author.id)
+      member = await findMember(args.slice(1).join(" "), message.guild.id) || message.guild.members.cache.get(message.author.id)
 
       let user = member.user,
         statusEmotes = {
@@ -136,7 +136,7 @@ export default {
 
       message.channel.send(reply)
     } else if ((args[0] === "role" && args.length > 1) || (args[0] === "r" && args.length > 1)) {
-      let role = await findRole(args[1], message.guild.id)
+      let role = await findRole(args.slice(1).join(" "), message.guild.id)
 
       if (!role) return message.channel.send("That's not a role...")
       

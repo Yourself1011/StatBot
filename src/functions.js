@@ -46,12 +46,12 @@ export function findChannel (input, guildId) {
       .get(guildId)
       .channels
       .cache
-      .find((chan) => chan.name === input)
+      .find((chan) => chan.name.includes(input))
   ) {
     channel = client.guilds.cache
       .get(guildId)
       .channels.cache
-      .find((chan) => chan.name === input)
+      .find((chan) => chan.name.includes(input))
   }
   
   return channel
@@ -95,12 +95,12 @@ export function findRole (input, guildId) {
       .get(guildId)
       .roles
       .cache
-      .find((role) => role.name === input)
+      .find((role) => role.name.includes(input))
   ) {
     role = client.guilds.cache
       .get(guildId)
       .roles.cache
-      .find((role) => role.name === input)
+      .find((role) => role.name.includes(input))
   }
   
   return role
@@ -158,12 +158,12 @@ export function findMember (input, guildId) {
       .get(guildId)
       .members
       .cache
-      .find((mem) => mem.name === input)
+      .find((mem) => mem.user.tag.toLowerCase().includes(input.toLowerCase()))
   ) {
     member = client.guilds.cache
       .get(guildId)
       .members.cache
-      .find((mem) => mem.name === input)
+      .find((mem) => mem.user.tag.toLowerCase().includes(input.toLowerCase()))
   }
   
   return member
