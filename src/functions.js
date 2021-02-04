@@ -95,12 +95,12 @@ export function findRole (input, guildId) {
       .get(guildId)
       .roles
       .cache
-      .find((role) => role.name.includes(input))
+      .find((role) => role.name.toLowerCase().includes(input.toLowerCase()))
   ) {
     role = client.guilds.cache
       .get(guildId)
       .roles.cache
-      .find((role) => role.name.includes(input))
+      .find((role) => role.name.toLowerCase().includes(input.toLowerCase()))
   }
   
   return role
