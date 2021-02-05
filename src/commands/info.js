@@ -40,7 +40,7 @@ export default {
           **AFK Channel:** ${guild.afkChannelID === null ? "None!" : `<#${guild.afkChannelID}>`}
           **Rules Channel:** ${guild.rulesChannelID === null ? "None!" : `<#${guild.rulesChannelID}>`}
           **Systems Channel:** ${guild.systemChannelID === null ? "None!" : `<#${guild.systemChannelID}>`}
-          **Updates Channel:** ${guild.publicUpdatesChannelID === null ? "None!" : `<#${guild.publicUpdatesChannelID}>`}`
+          **Updates Channel:** ${guild.publicUpdatesChannelID === null ? "None!" : `<#${guild.publicUpdatesChannelID}>`}`, inline: true
         },
         {name: "Roles", 
           value: `**Total:** ${guild.roles.cache.size}
@@ -48,17 +48,17 @@ export default {
           **Managed:** ${guild.roles.cache.filter(role => role.managed).size}
           **With Perms:** ${guild.roles.cache.filter(role => role.permissions.bitfield !== 0).size}
           
-          **Highest:** <@&${guild.roles.highest.id}>`
+          **Highest:** <@&${guild.roles.highest.id}>`, inline: true
         },
         {name: "Perks",
-          value: `${features.includes("ANIMATED_ICON") ? "✅ Animated icon\n" : ""}${features.includes("BANNER") ? "✅ Banner\n" : ""}${features.includes("COMMERCE") ? "✅ Shop channels\n" : ""}${features.includes("COMMUNITY") ? "✅ Community server\n" : ""}${features.includes("DISCOVERABLE") ? "✅ Enabled discovery\n" : ""}${features.includes("INVITE_SPLASH") ? "✅ Invite splash\n" : ""}${features.includes("MEMBER_VERIFICATION_GATE_ENABLED") ? "✅ Member verification gate\n" : ""}${features.includes("NEWS") ? "✅ News channels\n" : ""}${features.includes("PARTNERED") ? "✅ Partnered\n" : ""}${features.includes("VANITY_URL") ? "✅ Vanity URL\n" : ""}${features.includes("VERIFIED") ? "✅ Verified\n" : ""}${features.includes("WELCOME_SCREEN_ENABLED") ? "✅ Welcome screen\n" : ""}` || "None"},
+          value: `${features.includes("ANIMATED_ICON") ? "✅ Animated icon\n" : ""}${features.includes("BANNER") ? "✅ Banner\n" : ""}${features.includes("COMMERCE") ? "✅ Shop channels\n" : ""}${features.includes("COMMUNITY") ? "✅ Community server\n" : ""}${features.includes("DISCOVERABLE") ? "✅ Enabled discovery\n" : ""}${features.includes("INVITE_SPLASH") ? "✅ Invite splash\n" : ""}${features.includes("MEMBER_VERIFICATION_GATE_ENABLED") ? "✅ Member verification gate\n" : ""}${features.includes("NEWS") ? "✅ News channels\n" : ""}${features.includes("PARTNERED") ? "✅ Partnered\n" : ""}${features.includes("VANITY_URL") ? "✅ Vanity URL\n" : ""}${features.includes("VERIFIED") ? "✅ Verified\n" : ""}${features.includes("WELCOME_SCREEN_ENABLED") ? "✅ Welcome screen\n" : ""}` || "None", inline: true},
         {name: "Other",
           value: `**Verification level:** ${guild.verificationLevel}
           **Media filter level:** ${guild.explicitContentFilter.replace(/_/g, " ")}
 
           **Shard:** ${guild.shardID}
 
-          **Description:** ${guild.description || "None"}`
+          **Description:** ${guild.description || "None"}`, inline: true
         }
       )
       .setFooter("Created at ")
