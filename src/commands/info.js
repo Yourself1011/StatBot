@@ -28,7 +28,7 @@ export default {
         {name: "Members",
           value: `**Total:** ${guild.members.cache.size}
           **👥:** ${guild.members.cache.filter((member) => !member.user.bot).size}
-          **🤖:** ${guild.members.cache.filter((member) => member.user.bot).size}`
+          **🤖:** ${guild.members.cache.filter((member) => member.user.bot).size}`, inline: true
         },
         {name: "Channels", 
           value: `**Total:** ${guild.channels.cache.filter((channel) => channel.type !== "category").size}
