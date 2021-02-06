@@ -217,6 +217,30 @@ export default async function loop () {
       }
     }
 
+    if (!(iteration % 1800)){
+      const fetch = await require("node-fetch")
+
+      const response = await fetch(
+        "https://discordbotlist.com/api/v1/bots/764276231805075456/stats",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: process.env.DBL_TOKEN,
+          },
+          body: JSON.stringify({
+            guilds: client.guilds.cache.size,
+            users: client.guilds
+            .cache
+            .map((_guild) => _guild.members.cache.size)
+            .reduce((first, second) => first + second, 0)
+          })
+        }
+      )
+    
+      console.log(response.status, await response.json())
+    }
+
 
     iteration++
     await new Promise((resolve) => {
