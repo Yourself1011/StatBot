@@ -14,7 +14,7 @@ export default {
   cooldown: 5,
   aliases: [],
   async execute (message, args){
-    return Discord.MessageEmbed()
+    return new Discord.MessageEmbed()
     .setTitle("Vote for the bot!")
     .setDescription(`
     [discordbotlist.com](https://discordbotlist.com/bots/statbot/upvote)
