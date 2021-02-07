@@ -18,6 +18,7 @@ export default {
     .setTitle("Vote for the bot!")
     .setDescription(`
     [discordbotlist.com](https://discordbotlist.com/bots/statbot/upvote)
+    [Top.gg](https://top.gg/bot/764276231805075456/vote)
     `))
   }
 }
