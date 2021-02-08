@@ -188,10 +188,10 @@ export default {
             })
         }
 
-        serverColl.updateOne({_id: message.guild.id}, {$unset: {members: ""}})
+        await serverColl.updateOne({_id: message.guild.id}, {$unset: {members: ""}})
 
         if (boards.includes("90")) {
-          serverColl
+          await serverColl
             .updateOne(
               {_id: message.guild.id}, 
               {$set: 

@@ -152,7 +152,7 @@ client.on("message", async (message) => {
   command.execute(message, args, serverInfo)
     .catch((error) => {
       console.error(error)
-      message.reply(`I pooped. Send this to the devs: \n\`\`\`\n${error}\n\`\`\``)
+      message.channel.send(new Discord.MessageEmbed().setDescription(`Oops, there was an error! Please try again, or [report it.](https://github.com/Yourself1011/StatBot/issues/new) \n\`\`\`\n${error}\n\`\`\``))
     })
 })
 
