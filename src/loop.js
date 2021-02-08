@@ -179,10 +179,10 @@ export default async function loop () {
         if ("members" in server) {
 
           if (server.members.length === 7) {
-            serverColl.updateOne({_id: serverId}, {$pop: {members: -1}})
+            await serverColl.updateOne({_id: serverId}, {$pop: {members: -1}})
           }
 
-          serverColl
+          await serverColl
           .updateOne(
             {_id: serverId},
             {$push: {members: client
