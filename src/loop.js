@@ -151,7 +151,7 @@ export default async function loop() {
               )
               await serverColl.updateOne({_id: serverId}, {$pull: {statboards: statBoard, messages: server.messages[place]}})
             } else {
-              console.err(err)
+              console.error(err)
             }
           });
         }
@@ -214,7 +214,7 @@ export default async function loop() {
           )
           await serverColl.updateOne({_id: serverId}, {$pull: {statboards: 90, messages: server.messages[server.statboards.indexOf(90)]}})
         } else {
-          console.err(err)
+          console.error(err)
         }
       });
       }
