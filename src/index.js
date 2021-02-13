@@ -86,7 +86,7 @@ client.on("message", async (message) => {
     prefix = serverInfo ? serverInfo.prefix : "s."
   }
 
-  if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) {
+  if ((message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) && !message.author.bot) {
     return message.channel.send(`My prefix is \`${prefix}\``)
   }
 
