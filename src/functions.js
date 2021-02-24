@@ -434,9 +434,9 @@ export async function returnBoard (boardType, guildId) {
       .setColor("#800808")
       .setFooter("Last edited ")
   } else if (boardType === "gMembers") {
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
-      mongoGuild = await serverColl.findOne({_id: guild.id}),
+    let  mongoGuild = await serverColl.findOne({_id: guild.id}),
 
       chd = mongoGuild.members.join(","),
       addDate = new Date(),
