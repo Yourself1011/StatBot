@@ -31,17 +31,20 @@ export default async function loop() {
       let guild = client.guilds.cache.get(serverId);
 
       if (!server) {
-        await serverList.updateOne({_id: "0"}, {$pull: {servers: serverId}})
-        continue
-      };
-
-      if (!guild.members.cache.get(client.user.id)) {
-        serverColl.removeOne({_id: guild.id})
-        serverList.updateOne({_id: "0"}, {$pull: {servers: guild.id}})
-        continue
+        await serverList.updateOne(
+          { _id: "0" },
+          { $pull: { servers: serverId } }
+        );
+        continue;
       }
 
-      let serverStatBoards
+      if (!guild.members.cache.get(client.user.id)) {
+        serverColl.removeOne({ _id: guild.id });
+        serverList.updateOne({ _id: "0" }, { $pull: { servers: guild.id } });
+        continue;
+      }
+
+      let serverStatBoards;
 
       if (!(iteration % server.cooldown)) {
         serverStatBoards = server.statboards;
@@ -54,7 +57,8 @@ export default async function loop() {
                 presences: await returnBoard("presences", serverId),
                 bots: await returnBoard("bots", serverId)
               }
-          }})().catch()
+            };
+          })().catch();
         }
 
         for (const statBoard of serverStatBoards) {
@@ -140,21 +144,26 @@ export default async function loop() {
             }
           })().catch(async (err) => {
             if (err.message === "Unknown Message") {
-              guild.members
-                .fetch(guild.ownerID)
-                .then(owner => {
-                  owner.user.send(
-                    new Discord.MessageEmbed()
-                      .setTitle("Deleted statboard")
-                      .setDescription(
-                        `I've detected that you deleted a statboard, specifically the one with the id ${statBoard}. I have removed it from my database.`
-                      )
-                  );
+              guild.members.fetch(guild.ownerID).then((owner) => {
+                owner.user.send(
+                  new Discord.MessageEmbed()
+                    .setTitle("Deleted statboard")
+                    .setDescription(
+                      `I've detected that you deleted a statboard, specifically the one with the id ${statBoard}. I have removed it from my database.`
+                    )
+                );
+              });
+              await serverColl.updateOne(
+                { _id: serverId },
+                {
+                  $pull: {
+                    statboards: statBoard,
+                    messages: server.messages[place]
+                  }
                 }
-              )
-              await serverColl.updateOne({_id: serverId}, {$pull: {statboards: statBoard, messages: server.messages[place]}})
+              );
             } else {
-              console.error(err)
+              console.error({ err });
             }
           });
         }
@@ -170,42 +179,39 @@ export default async function loop() {
         if (!server) continue;
 
         (async () => {
+          if (server.statboards.includes(90)) {
+            if (server.members.length === 7) {
+              await serverColl.updateOne(
+                { _id: serverId },
+                { $pop: { members: -1 } }
+              );
+            }
 
-        if (server.statboards.includes(90)) {
-          if (server.members.length === 7) {
             await serverColl.updateOne(
               { _id: serverId },
-              { $pop: { members: -1 } }
-            );
-          }
-
-          await serverColl.updateOne(
-            { _id: serverId },
-            {
-              $push: {
-                members: client.guilds.cache.get(serverId).members.cache.size
+              {
+                $push: {
+                  members: client.guilds.cache.get(serverId).members.cache.size
+                }
               }
-            }
-          );
+            );
 
-          newBoard = await returnBoard("gMembers", serverId);
+            newBoard = await returnBoard("gMembers", serverId);
 
-          newBoard.setTimestamp();
+            newBoard.setTimestamp();
 
-          client.guilds.cache
-            .get(serverId)
-            .channels.cache.get(server.channel)
-            .messages.fetch(server.messages[server.statboards.indexOf(90)])
-            .then((msg) => {
-              msg.edit(newBoard).catch();
-            });
-        }
-      })().catch(async (err) => {
-        if (err.message === "Unknown Message") {
-          let guild = client.guilds.cache.get(serverId);
-          guild.members
-            .fetch(guild.ownerID)
-            .then(owner => {
+            client.guilds.cache
+              .get(serverId)
+              .channels.cache.get(server.channel)
+              .messages.fetch(server.messages[server.statboards.indexOf(90)])
+              .then((msg) => {
+                msg.edit(newBoard).catch();
+              });
+          }
+        })().catch(async (err) => {
+          if (err.message === "Unknown Message") {
+            let guild = client.guilds.cache.get(serverId);
+            guild.members.fetch(guild.ownerID).then((owner) => {
               owner.user.send(
                 new Discord.MessageEmbed()
                   .setTitle("Deleted statboard")
@@ -213,13 +219,20 @@ export default async function loop() {
                     `I've detected that you deleted a statboard, specifically the one with the id ${90}. I have removed it from my database.`
                   )
               );
-            }
-          )
-          await serverColl.updateOne({_id: serverId}, {$pull: {statboards: 90, messages: server.messages[server.statboards.indexOf(90)]}})
-        } else {
-          console.error(err)
-        }
-      });
+            });
+            await serverColl.updateOne(
+              { _id: serverId },
+              {
+                $pull: {
+                  statboards: 90,
+                  messages: server.messages[server.statboards.indexOf(90)]
+                }
+              }
+            );
+          } else {
+            console.error(err);
+          }
+        });
       }
     }
 

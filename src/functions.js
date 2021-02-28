@@ -175,12 +175,12 @@ export async function returnBoard (boardType, guildId) {
   if (boardType === "general") {
     const members = guild.members.cache
 
-    return await new Discord.MessageEmbed()
+    return new Discord.MessageEmbed()
       .setThumbnail(guild.iconURL())
       .setTitle("General Stats")
       .addFields({
         name: "Server Info:",
-        value: `**${guild.name}**\n\n**<:Boost:772548967455129630>:** ${guild.premiumSubscriptionCount}\n**Boost level:** ${guild.premiumTier}\n\n**Animated emojis:** ${guild.emojis.cache.filter((emoji) => emoji.animated).size}\n**Still emojis:** ${guild.emojis.cache.filter((emoji) => !emoji.animated).size}\n\n**Channels:** ${guild.channels.cache.filter((channel) => channel.type !== "category").size}\n**#:** ${guild.channels.cache.filter((channel) => channel.type === "text").size}\n**🔊:** ${guild.channels.cache.filter((channel) => channel.type === "voice").size}\n\n**Roles:** ${guild.roles.cache.size}\n**🔨:** ${await guild.fetchBans().then((banned) => banned.size).catch(() => {return "Missing permissions"})}`,
+        value: `**${guild.name}**\n\n**<:Boost:772548967455129630>:** ${guild.premiumSubscriptionCount}\n**Boost level:** ${guild.premiumTier}\n\n**Animated emojis:** ${guild.emojis.cache.filter((emoji) => emoji.animated).size}\n**Still emojis:** ${guild.emojis.cache.filter((emoji) => !emoji.animated).size}\n\n**Channels:** ${guild.channels.cache.filter((channel) => channel.type !== "category").size}\n**#:** ${guild.channels.cache.filter((channel) => channel.type === "text").size}\n**🔊:** ${guild.channels.cache.filter((channel) => channel.type === "voice").size}\n\n**Roles:** ${guild.roles.cache.size}\n**🔨:** ${await guild.fetchBans().catch(() => "Missing permissions").then((banned) => banned.size) || "Missing permissions"}`,
       }, {
         name: "Member Info:",
         value: `**All:** ${members.size}\n**👥:** ${
