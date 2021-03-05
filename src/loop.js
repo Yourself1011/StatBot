@@ -74,7 +74,6 @@ export default async function loop() {
                   cache[serverId].boards.general = newBoard;
 
                   newBoard.setTimestamp();
-                  console.log(await guild.channels.cache)
                   console.log(server.channel)
 
                   await guild.channels.cache
