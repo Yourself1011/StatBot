@@ -198,7 +198,7 @@ export default async function loop() {
 
             newBoard.setTimestamp();
 
-            guild.channels.cache.get(server.channel)
+            client.guilds.cache.get(serverId).channels.cache.get(server.channel)
               .messages.fetch(server.messages[server.statboards.indexOf(90)])
               .then((msg) => {
                 msg.edit(newBoard).catch();
