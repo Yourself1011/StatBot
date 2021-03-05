@@ -57,7 +57,6 @@ export {
 client.once("ready", () => {
   loop()
   console.log("Discord client ready")
-  console.log(client.user.id)
 })
 
 client.login(token)
