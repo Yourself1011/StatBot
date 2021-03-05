@@ -48,7 +48,6 @@ export default async function loop() {
       if (!(iteration % server.cooldown)) {
 
         if (cache[serverId] === undefined) {
-          (async () => {
             cache[serverId] = {
               boards: {
                 general: await returnBoard("general", serverId),
@@ -56,7 +55,6 @@ export default async function loop() {
                 bots: await returnBoard("bots", serverId)
               }
             };
-          })().catch();
         }
 
         for (const statBoard of server.statboards) {
