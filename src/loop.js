@@ -28,7 +28,6 @@ export default async function loop() {
 
     for (let serverId of serverArray) {
       let server = await serverColl.findOne({ _id: serverId });
-      let guild = client.guilds.cache.get(serverId);
 
       if (!server) {
         await serverList.updateOne(
@@ -37,6 +36,8 @@ export default async function loop() {
         );
         continue;
       }
+      
+      let guild = client.guilds.cache.get(serverId);
 
       if (!guild.members.cache.get(client.user.id)) {
         serverColl.removeOne({ _id: guild.id });
