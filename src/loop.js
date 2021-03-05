@@ -73,7 +73,7 @@ export default async function loop() {
 
                   newBoard.setTimestamp();
 
-                  await guild.channels.cache
+                  await client.channels
                     .get(server.channel)
                     .messages.fetch(server.messages[place])
                     .then((msg) => {
@@ -93,7 +93,7 @@ export default async function loop() {
 
                   newBoard.setTimestamp();
 
-                  await guild.channels.cache
+                  await client.channels
                     .get(server.channel)
                     .messages.fetch(server.messages[place])
                     .then((msg) => {
@@ -113,7 +113,7 @@ export default async function loop() {
 
                   newBoard.setTimestamp();
 
-                  await guild.channels.cache
+                  await client.channels
                     .get(server.channel)
                     .messages.fetch(server.messages[place])
                     .then((msg) => {
@@ -127,7 +127,7 @@ export default async function loop() {
 
                 newBoard.setTimestamp();
 
-                await guild.channels.cache
+                await client.channels
                   .get(server.channel)
                   .messages.fetch(server.messages[place])
                   .then((msg) => {
@@ -196,9 +196,7 @@ export default async function loop() {
 
             newBoard.setTimestamp();
 
-            client.guilds.cache
-              .get(serverId)
-              .channels.cache.get(server.channel)
+            client.channels.get(server.channel)
               .messages.fetch(server.messages[server.statboards.indexOf(90)])
               .then((msg) => {
                 msg.edit(newBoard).catch();
