@@ -44,10 +44,7 @@ export default async function loop() {
         continue;
       }
 
-      let serverStatBoards;
-
       if (!(iteration % server.cooldown)) {
-        serverStatBoards = server.statboards;
 
         if (cache[serverId] === undefined) {
           (async () => {
@@ -61,8 +58,8 @@ export default async function loop() {
           })().catch();
         }
 
-        for (const statBoard of serverStatBoards) {
-          const place = serverStatBoards.indexOf(statBoard);
+        for (const statBoard of server.statboards) {
+          const place = server.statboards.indexOf(statBoard);
 
           (async () => {
             switch (statBoard) {
@@ -144,7 +141,7 @@ export default async function loop() {
             }
           })().catch(async (err) => {
             if (err.message === "Unknown Message") {
-              guild.members.fetch(guild.ownerID).then((owner) => {
+              guild.members.cache.get(guild.ownerID).then((owner) => {
                 owner.user.send(
                   new Discord.MessageEmbed()
                     .setTitle("Deleted statboard")
@@ -211,12 +208,12 @@ export default async function loop() {
         })().catch(async (err) => {
           if (err.message === "Unknown Message") {
             let guild = client.guilds.cache.get(serverId);
-            guild.members.fetch(guild.ownerID).then((owner) => {
+            guild.members.cache.get(guild.ownerID).then((owner) => {
               owner.user.send(
                 new Discord.MessageEmbed()
                   .setTitle("Deleted statboard")
                   .setDescription(
-                    `I've detected that you deleted a statboard, specifically the one with the id ${90}. I have removed it from my database.`
+                    `I've detected that you deleted a statboard, specifically the one with the id 90. I have removed it from my database.`
                   )
               );
             });
