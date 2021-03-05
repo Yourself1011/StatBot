@@ -45,6 +45,8 @@ export default async function loop() {
         continue;
       }
 
+      if (!server.channel) continue
+
       if (!(iteration % server.cooldown)) {
 
         if (cache[serverId] === undefined) {
