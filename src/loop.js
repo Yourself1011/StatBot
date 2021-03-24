@@ -76,6 +76,8 @@ export default async function loop() {
 
                   newBoard.setTimestamp();
 
+                  newBoard.setColor("colour" in server ? server.colour : "#800808")
+
                   await guild.channels.cache
                     .get(server.channel)
                     .messages.fetch(server.messages[place])
@@ -95,6 +97,8 @@ export default async function loop() {
                   cache[serverId].boards.presences = newBoard;
 
                   newBoard.setTimestamp();
+
+                  newBoard.setColor("colour" in server ? server.colour : "#800808")
 
                   await guild.channels.cache
                     .get(server.channel)
@@ -116,6 +120,8 @@ export default async function loop() {
 
                   newBoard.setTimestamp();
 
+                  newBoard.setColor("colour" in server ? server.colour : "#800808")
+
                   await guild.channels.cache
                     .get(server.channel)
                     .messages.fetch(server.messages[place])
@@ -130,6 +136,7 @@ export default async function loop() {
 
                 newBoard2.bot.setTimestamp();
 
+                newBoard2.bot.setColor("colour" in server ? server.colour : "#800808")
 
                 await guild.channels.cache
                   .get(server.channel)
@@ -162,6 +169,24 @@ export default async function loop() {
                   }
                 }
               );
+            } else if (err.message === "Missing Access") {
+              await serverColl.updateOne(
+                {_id: serverId},
+                {
+                  $set: {
+                    channel: null
+                  }
+                }
+              )
+              await guild.members.fetch(guild.ownerID).then((owner) => {
+                owner.user.send(
+                  new Discord.MessageEmbed()
+                    .setTitle("Missing permissions")
+                    .setDescription(
+                      `I'm mising some permissions! Please set me up again with the correct permissions`
+                    )
+                );
+              });
             } else {
               console.error({ err });
             }
@@ -199,6 +224,8 @@ export default async function loop() {
             newBoard2.members = await returnBoard("gMembers", serverId);
 
             newBoard2.members.setTimestamp();
+
+            newBoard2.members.setColor("colour" in server ? server.colour : "#800808")
 
             client.guilds.cache.get(serverId).channels.cache.get(server.channel)
               .messages.fetch(server.messages[server.statboards.indexOf(90)])

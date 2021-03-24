@@ -19,7 +19,7 @@ export default {
     if (!args.length) {
       const reply = new Discord.MessageEmbed()
         .setTitle("Settings")
-        .setDescription("`cooldown`, `channel`, `boards`, `prefix`")
+        .setDescription("`cooldown`, `channel`, `boards`, `prefix`, `colour`")
 
       message.channel.send(reply)
     } else if (!message.member.hasPermission("MANAGE_GUILD")) {
@@ -32,6 +32,25 @@ export default {
         messages = []
 
       switch (args[0]) {
+      case "colour":
+      case "color":
+        if (args.length < 2) {
+          const reply = new Discord.MessageEmbed()
+            .setTitle("Colour")
+            .setDescription("Sets the colour of the statboards")
+
+            return message.channel.send(reply)
+        }
+
+        if (!/^#([0-9A-F]{3}){1,2}$/i.test(args[1])){
+          return message.channel.send("Please give a valid hex code")
+        } else {
+          await serverColl.updateOne(
+            {_id: message.guild.id},
+            {$set: {colour: args[0]}}
+          )
+        }
+        break
       case "cooldown":
 
         if (args.length < 2) {
