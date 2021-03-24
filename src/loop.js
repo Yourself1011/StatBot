@@ -162,6 +162,7 @@ export default async function loop() {
               );
             } else {
               console.error({ err });
+              console.log(server.channel)
             }
           });
         }
