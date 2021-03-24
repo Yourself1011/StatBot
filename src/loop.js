@@ -142,7 +142,7 @@ export default async function loop() {
             }
           })().catch(async (err) => {
             if (err.message === "Unknown Message") {
-              guild.members.cache.get(guild.ownerID).then((owner) => {
+              await guild.members.fetch(guild.ownerID).then((owner) => {
                 owner.user.send(
                   new Discord.MessageEmbed()
                     .setTitle("Deleted statboard")
@@ -162,7 +162,8 @@ export default async function loop() {
               );
             } else {
               console.error({ err });
-              console.log(server.channel)
+              console.log(guild.channels.cache
+                .get(server.channel))
             }
           });
         }
@@ -208,7 +209,7 @@ export default async function loop() {
         })().catch(async (err) => {
           if (err.message === "Unknown Message") {
             let guild = client.guilds.cache.get(serverId);
-            guild.members.cache.get(guild.ownerID).then((owner) => {
+            await guild.members.fetch(guild.ownerID).then((owner) => {
               owner.user.send(
                 new Discord.MessageEmbed()
                   .setTitle("Deleted statboard")
