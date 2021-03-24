@@ -163,7 +163,7 @@ export default async function loop() {
             } else {
               console.error({ err });
               console.log(guild.channels.cache
-                .get(server.channel))
+                )
             }
           });
         }
