@@ -43,12 +43,14 @@ export default {
         }
 
         if (!/^#([0-9A-F]{3}){1,2}$/i.test(args[1])){
-          return message.channel.send("Please give a valid hex code")
+          return message.channel.send("Please give a valid hex code (with the #)")
         } else {
           await serverColl.updateOne(
             {_id: message.guild.id},
             {$set: {colour: args[0]}}
           )
+
+          message.channel.send(`Success! Your statboards will now have ${args[0]} as their colour`)
         }
         break
       case "cooldown":
