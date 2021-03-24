@@ -126,6 +126,7 @@ export default async function loop() {
 
               case 3:
                 newBoard = await returnBoard("bot", serverId);
+                console.log(newBoard)
 
                 newBoard.setTimestamp();
 
