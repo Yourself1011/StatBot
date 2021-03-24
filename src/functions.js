@@ -413,8 +413,7 @@ export async function returnBoard (boardType, guildId) {
       .setColor("#800808")
       .setFooter("Last edited ")
   } else if (boardType === "bot") {
-    console.log("bot board")
-    return new Discord.MessageEmbed()
+    let out = new Discord.MessageEmbed()
       .setTitle("My stats")
       .addFields({
         name: "Guilds",
@@ -434,6 +433,7 @@ export async function returnBoard (boardType, guildId) {
       })
       .setColor("#800808")
       .setFooter("Last edited ")
+    return out
   } else if (boardType === "gMembers") {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 

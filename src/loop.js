@@ -13,6 +13,7 @@ import { returnBoard } from "./functions";
 let serverArray,
   iteration = 0,
   newBoard,
+  newBoard2 = {},
   lastDate = new Date();
 
 const cache = {};
@@ -125,17 +126,17 @@ export default async function loop() {
                 break;
 
               case 3:
-                newBoard = await returnBoard("bot", serverId);
+                newBoard2.bot = await returnBoard("bot", serverId);
 
-                newBoard.setTimestamp();
+                newBoard2.bot.setTimestamp();
+
 
                 await guild.channels.cache
                   .get(server.channel)
                   .messages.fetch(server.messages[place])
                   .then((msg) => {
-                    msg.edit(newBoard);
+                    msg.edit(newBoard2.bot);
                   });
-                console.log(newBoard.title)
 
                 break;
               default:
@@ -195,14 +196,14 @@ export default async function loop() {
               }
             );
 
-            newBoard = await returnBoard("gMembers", serverId);
+            newBoard2.members = await returnBoard("gMembers", serverId);
 
-            newBoard.setTimestamp();
+            newBoard2.members.setTimestamp();
 
             client.guilds.cache.get(serverId).channels.cache.get(server.channel)
               .messages.fetch(server.messages[server.statboards.indexOf(90)])
               .then((msg) => {
-                msg.edit(newBoard).catch();
+                msg.edit(newBoard2.members).catch();
               });
           }
         })().catch(async (err) => {
