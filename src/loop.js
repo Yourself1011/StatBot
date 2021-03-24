@@ -135,7 +135,7 @@ export default async function loop() {
                   .then((msg) => {
                     msg.edit(newBoard);
                   });
-                console.log(newBoard)
+                console.log(newBoard.title)
 
                 break;
               default:

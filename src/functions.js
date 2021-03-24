@@ -413,6 +413,7 @@ export async function returnBoard (boardType, guildId) {
       .setColor("#800808")
       .setFooter("Last edited ")
   } else if (boardType === "bot") {
+    console.log("bot board")
     return new Discord.MessageEmbed()
       .setTitle("My stats")
       .addFields({
