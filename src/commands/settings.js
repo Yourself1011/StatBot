@@ -50,7 +50,7 @@ export default {
             {$set: {colour: args[0]}}
           )
 
-          message.channel.send(`Success! Your statboards will now have ${args[0]} as their colour`)
+          message.channel.send(`Success! Your statboards will now have ${args[1]} as their colour`)
         }
         break
       case "cooldown":
